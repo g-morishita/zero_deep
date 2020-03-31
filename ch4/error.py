@@ -6,8 +6,12 @@ def mean_squared_error(y, t):
 
 
 def cross_entropy_error(y, t):
-    delta = 1e-7
-    return -np.sum(t * np.log(y + delta))
+    if y.ndim = 1:
+        y = y.reshape(1, y.size)
+        t = t.reshape(1, t.size)
+
+    batch_size = y.shape[0]
+    return -np.sum(t * np.log(y)) / batch_size
 
 
 t = np.array([0, 0, 1])
